@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Replenisher Task App",
+  "name": "Replenisher Task Management Application",
   "icons": [
     {
       "src": "favicon.ico",
