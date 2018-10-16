@@ -2,7 +2,7 @@ Replenisher Task App
 
 ## Table of Contents
 
-- [Application Tutorial](#app-tutorial)
+- [Application Tutorial](#application-tutorial)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
