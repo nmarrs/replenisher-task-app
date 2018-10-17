@@ -45,7 +45,7 @@ const defaultState = {
   isAdminView: true
 }
 
-const rootReducer = (state = defaultState, action) => {
+export const rootReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'TOGGLE_CREATE_TASK_MODAL':
       return {
@@ -134,11 +134,15 @@ const store = createStore(
   applyMiddleware(thunk, createLogger())
 )
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-  , document.getElementById('root'))
+let appRootNode = document.getElementById('root')
+
+if (appRootNode) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+    , appRootNode)
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
