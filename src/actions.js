@@ -72,3 +72,34 @@ export const editTask = (task, isAdminView) => {
     }
   }
 }
+
+/**
+  Action function that sorts application task by rank weight
+
+  Tasks are sorted to list the most prioritized and shortest tasks first and the
+  least prioritized and longest tasks last.
+*/
+export const sortTasksByRank = (templateTasks, userTasks) => {
+  let sortedTemplateTasks = templateTasks.sort((a, b) => {
+    return parseInt(b.rankWeight - a.rankWeight)
+  })
+  let sortedUserTasks = userTasks.sort((a, b) => {
+    return parseInt(b.rankWeight - a.rankWeight)
+  })
+
+  return {
+    type: 'SORT_TASKS_BY_RANK',
+    sortedTemplateTasks: sortedTemplateTasks,
+    sortedUserTasks: sortedUserTasks
+  }
+}
+
+/**
+  Helper function that caculates weight of task for ranking purposes
+
+  Tasks are sorted to list the most prioritized and shortest tasks first and the
+  least prioritized and longest tasks last.
+*/
+export const calculateTaskRankWeight = (priority, timeEstimate) => {
+  return parseInt((priority * 100) / timeEstimate)
+}

@@ -26,12 +26,12 @@ class TaskCard extends Component {
             <table className='table table-hover'>
               <tbody>
                 <tr>
-                  <th><i className="far fa-clock"></i> Estimate (hours)</th>
-                  <td>{task.timeEstimate}</td>
-                </tr>
-                <tr>
                   <th><i className="fas fa-exclamation"></i> Priority Level (1-5)</th>
                   <td>{task.priority}</td>
+                </tr>
+                <tr>
+                  <th><i className="far fa-clock"></i> Estimate (hours)</th>
+                  <td>{task.timeEstimate}</td>
                 </tr>
               </tbody>
             </table>

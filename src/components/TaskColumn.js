@@ -23,7 +23,7 @@ class TaskColumn extends Component {
     } = this.props
 
     return (
-      <div className="card shadow font-title mt-3 TaskColumn-card mx-auto">
+      <div className="card shadow font-title mt-3 mb-5 TaskColumn-card mx-auto">
         <div className='card-title mt-3'>
           <h3>{title} - {tasks ? tasks.length : 0}</h3>
         </div>

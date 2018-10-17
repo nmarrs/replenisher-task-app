@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import uuidv1 from 'uuid/v1'
 
 import './styles/CreateTaskForm.css'
+import { calculateTaskRankWeight } from '../actions'
 
 class CreateTaskForm extends Component {
   static propTypes = {
@@ -77,7 +78,8 @@ class CreateTaskForm extends Component {
       startTime: '',
       endTime: '',
       completionTime: '',
-      currentStatus: currentStatus
+      currentStatus: currentStatus,
+      rankWeight: calculateTaskRankWeight(priority, timeEstimate)
     }
 
     createTask(newTask, isAdminView)
@@ -110,10 +112,6 @@ class CreateTaskForm extends Component {
               <option>Finished</option>
             </select>
           </div>
-          <div className='form-group'>
-            <label htmlFor='taskEstimate'><i className="far fa-clock"></i> Estimate (hours)</label>
-            <input type='number' min='0' className='form-control' id='taskEstimateInput' defaultValue={timeEstimate} onChange={this.handleTimeEstimateInputChange} />
-          </div>
           <div className="form-group">
             <label htmlFor='taskPriority'><i className="fas fa-exclamation"></i> Priority Level (1-5)</label>
             <select className="form-control" id="taskPrioritySelect" defaultValue={priority} onChange={this.handlePrioritySelectChange}>
@@ -124,6 +122,10 @@ class CreateTaskForm extends Component {
               <option>4</option>
               <option>5</option>
             </select>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='taskEstimate'><i className="far fa-clock"></i> Estimate (hours)</label>
+            <input type='number' min='0' className='form-control' id='taskEstimateInput' defaultValue={timeEstimate} onChange={this.handleTimeEstimateInputChange} />
           </div>
           <div className='form-group'>
             <label htmlFor='taskNotes'><i className="far fa-sticky-note"></i> Notes</label>

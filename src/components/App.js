@@ -5,7 +5,7 @@ import Modal from 'react-responsive-modal'
 
 import logo from '../images/logo.png'
 import './styles/App.css'
-import { toggleCreateTaskModal, toggleEditTaskModal, toggleIsAdminView, assignTasksToUser, createTask, editTask } from '../actions'
+import { toggleCreateTaskModal, toggleEditTaskModal, toggleIsAdminView, assignTasksToUser, createTask, editTask, sortTasksByRank } from '../actions'
 
 import TaskColumn from './TaskColumn'
 import CreateTaskForm from './CreateTaskForm'
@@ -20,9 +20,15 @@ class App extends Component {
     editTaskModalOpen: PropTypes.bool.isRequired,
     toggleCreateTaskModal: PropTypes.func,
     toggleEditTaskModal: PropTypes.func,
+    sortTasksByRank: PropTypes.func,
     assignTasksToUser: PropTypes.func,
     createTask: PropTypes.func,
     currentTask: PropTypes.object
+  }
+
+  componentDidMount() {
+    // sort tasks on initial load
+    this.props.sortTasksByRank(this.props.templateTasks, this.props.user.tasks)
   }
 
   render() {
@@ -79,7 +85,7 @@ class App extends Component {
           </div>
           : <div>
             <h3 className='mt-3'><i className="fas fa-tasks"></i> Current User Tasks</h3>
-            <div className='container mb-5'>
+            <div className='container'>
               <div className='row'>
                 <TaskColumn
                   title={'To Do'}
@@ -109,15 +115,13 @@ class App extends Component {
             </div>
           </div>
           }
-
         </div>
 
         <Modal open={createTaskModalOpen} onClose={() => toggleCreateTaskModal(false)}>
           <CreateTaskForm
             createTask={createTask}
             toggleCreateTaskModal={toggleCreateTaskModal}
-            isAdminView={isAdminView}
-            isEditMode={false} />
+            isAdminView={isAdminView} />
         </Modal>
 
         <Modal open={editTaskModalOpen} onClose={() => toggleEditTaskModal(false)}>
@@ -162,6 +166,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     editTask: (task, isAdminView) => {
       dispatch(editTask(task, isAdminView))
+    },
+    sortTasksByRank: (templateTasks, userTasks) => {
+      dispatch(sortTasksByRank(templateTasks, userTasks))
     }
   }
 }

@@ -20,10 +20,6 @@ class EditTaskForm extends Component {
     feedback: this.props.task.feedback
   }
 
-  componentDidMount() {
-    console.log('what is my current task context?', this.props.task)
-  }
-
   handleTitleInputChange = (event) => {
     this.setState({title: event.target.value})
   }
@@ -108,10 +104,6 @@ class EditTaskForm extends Component {
               <option>Finished</option>
             </select>
           </div>
-          <div className='form-group'>
-            <label htmlFor='taskEstimate'><i className="far fa-clock"></i> Estimate (hours)</label>
-            <input type='number' min='0' className='form-control' id='taskEstimateInput' defaultValue={task && task.timeEstimate ? task.timeEstimate : timeEstimate} onChange={this.handleTimeEstimateInputChange} disabled />
-          </div>
           <div className="form-group">
             <label htmlFor='taskPriority'><i className="fas fa-exclamation"></i> Priority Level (1-5)</label>
             <select className="form-control" id="taskPrioritySelect" defaultValue={task && task.priority ? task.priority : priority} onChange={this.handlePrioritySelectChange} disabled>
@@ -122,6 +114,10 @@ class EditTaskForm extends Component {
               <option>4</option>
               <option>5</option>
             </select>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='taskEstimate'><i className="far fa-clock"></i> Estimate (hours)</label>
+            <input type='number' min='0' className='form-control' id='taskEstimateInput' defaultValue={task && task.timeEstimate ? task.timeEstimate : timeEstimate} onChange={this.handleTimeEstimateInputChange} disabled />
           </div>
           <div className='form-group'>
             <label htmlFor='taskNotes'><i className="far fa-sticky-note"></i> Notes</label>

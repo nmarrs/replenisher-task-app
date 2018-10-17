@@ -12,15 +12,29 @@ import * as serviceWorker from './serviceWorker'
 const defaultState = {
   templateTasks: [{
     id: 1,
-    title: 'Example Task',
+    title: 'Unload merchandise',
     priority: 3,
     timeEstimate: 2,
-    notes: 'This is a task.This is a task.This is a task.This is a task.This is a task.This is a task.This is a task.',
+    notes: 'Unload merchandise from the bay door. Driver usually comes by at 6 am sharp.',
     feedback: '',
     startTime: '',
     endTime: '',
     completionTime: '',
-    currentStatus: 'To Do'
+    currentStatus: 'To Do',
+    rankWeight: 150
+  },
+  {
+    id: 2,
+    title: 'Stock shelves with unpacked items',
+    priority: 1,
+    timeEstimate: 10,
+    notes: 'Take merchandise items and stock shelves with them. Be sure to place items in correct areas.',
+    feedback: '',
+    startTime: '',
+    endTime: '',
+    completionTime: '',
+    currentStatus: 'To Do',
+    rankWeight: 10
   }],
   user: {
     tasks: []
@@ -57,22 +71,30 @@ const rootReducer = (state = defaultState, action) => {
         }
       }
     case 'CREATE_TEMPLATE_TASK':
+      let templateTasks = [
+        ...state.templateTasks,
+        action.payload
+      ]
+      templateTasks.sort((a, b) => {
+        return parseInt(b.rankWeight - a.rankWeight)
+      })
       return {
         ...state,
-        templateTasks: [
-          ...state.templateTasks,
-          action.payload
-        ]
+        templateTasks: templateTasks
       }
     case 'CREATE_TASK':
+      let userTasks = [
+        ...state.user.tasks,
+        action.payload
+      ]
+      userTasks.sort((a, b) => {
+        return parseInt(b.rankWeight - a.rankWeight)
+      })
       return {
         ...state,
         user: {
           ...state.user,
-          tasks: [
-            ...state.user.tasks,
-            action.payload
-          ]
+          tasks: userTasks
         }
       }
     case 'EDIT_TEMPLATE_TASK':
@@ -92,6 +114,14 @@ const rootReducer = (state = defaultState, action) => {
             (content, i) => content.id === action.payload.id
             ? { ...content, ...action.payload }
             : content)
+        }
+      }
+    case 'SORT_TASKS_BY_RANK':
+      return {
+        ...state,
+        templateTasks: action.sortedTemplateTasks,
+        user: {
+          tasks: action.sortedUserTasks
         }
       }
     default:
