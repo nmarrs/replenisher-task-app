@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import uuidv1 from 'uuid/v1'
 
-import './styles/CreateTaskForm.css'
+import './styles/EditTaskForm.css'
 
-class CreateTaskForm extends Component {
+class EditTaskForm extends Component {
   static propTypes = {
-    createTask: PropTypes.func,
-    toggleCreateTaskModal: PropTypes.func.isRequired,
+    task: PropTypes.object,
+    editTask: PropTypes.func.isRequired,
+    toggleEditTaskModal: PropTypes.func.isRequired,
     isAdminView: PropTypes.bool.isRequired
   }
 
   state = {
-    title: '',
-    currentStatus: 'To Do',
-    timeEstimate: '0',
-    priority: '-',
-    notes: '',
-    feedback: ''
+    title: this.props.task.title,
+    currentStatus: this.props.task.currentStatus,
+    timeEstimate: this.props.task.timeEstimate,
+    priority: this.props.task.priority,
+    notes: this.props.task.notes,
+    feedback: this.props.task.feedback
+  }
+
+  componentDidMount() {
+    console.log('what is my current task context?', this.props.task)
   }
 
   handleTitleInputChange = (event) => {
@@ -49,17 +53,15 @@ class CreateTaskForm extends Component {
 
     const {
       title,
-      currentStatus,
       timeEstimate,
-      priority,
-      notes,
-      feedback
+      priority
     } = this.state
 
     const {
+      task,
       isAdminView,
-      createTask,
-      toggleCreateTaskModal
+      editTask,
+      toggleEditTaskModal
     } = this.props
 
     if (title === '' || timeEstimate === '0' || priority === '-') {
@@ -67,21 +69,13 @@ class CreateTaskForm extends Component {
       return
     }
 
-    let newTask = {
-      id: uuidv1(),
-      title: title,
-      priority: priority,
-      timeEstimate: timeEstimate,
-      notes: notes,
-      feedback: feedback,
-      startTime: '',
-      endTime: '',
-      completionTime: '',
-      currentStatus: currentStatus
+    let editedTask = {
+      ...task,
+      ...this.state
     }
 
-    createTask(newTask, isAdminView)
-    toggleCreateTaskModal(false)
+    editTask(editedTask, isAdminView)
+    toggleEditTaskModal(false)
   }
 
   render() {
@@ -94,17 +88,21 @@ class CreateTaskForm extends Component {
       feedback
     } = this.state
 
+    const {
+      task
+    } = this.props
+
     return (
-      <div className='CreateTaskForm-modal'>
-        <h4 className='m-3'><i className="far fa-plus-square"></i> Create New Task</h4>
+      <div className='EditTaskForm-modal'>
+        <h4 className='m-3'><i className="fas fa-info-circle"></i> Task Details</h4>
         <form>
           <div className='form-group'>
             <label htmlFor='taskTitle'><i className="fas fa-tag"></i> Title</label>
-            <input className='form-control' id='taskTitleInput' defaultValue={title} onChange={this.handleTitleInputChange} />
+            <input className='form-control' id='taskTitleInput' defaultValue={task && task.title ? task.title : title} onChange={this.handleTitleInputChange} />
           </div>
           <div className="form-group">
             <label htmlFor='taskStatus'><i className="fas fa-bolt"></i> Status</label>
-            <select className="form-control" id="taskStatusSelect" defaultValue={currentStatus} onChange={this.handleStatusSelectChange} disabled>
+            <select className="form-control" id="taskStatusSelect" defaultValue={task && task.currentStatus ? task.currentStatus : currentStatus} onChange={this.handleStatusSelectChange}>
               <option>To Do</option>
               <option>In Progress</option>
               <option>Finished</option>
@@ -112,11 +110,11 @@ class CreateTaskForm extends Component {
           </div>
           <div className='form-group'>
             <label htmlFor='taskEstimate'><i className="far fa-clock"></i> Estimate (hours)</label>
-            <input type='number' min='0' className='form-control' id='taskEstimateInput' defaultValue={timeEstimate} onChange={this.handleTimeEstimateInputChange} />
+            <input type='number' min='0' className='form-control' id='taskEstimateInput' defaultValue={task && task.timeEstimate ? task.timeEstimate : timeEstimate} onChange={this.handleTimeEstimateInputChange} disabled />
           </div>
           <div className="form-group">
             <label htmlFor='taskPriority'><i className="fas fa-exclamation"></i> Priority Level (1-5)</label>
-            <select className="form-control" id="taskPrioritySelect" defaultValue={priority} onChange={this.handlePrioritySelectChange}>
+            <select className="form-control" id="taskPrioritySelect" defaultValue={task && task.priority ? task.priority : priority} onChange={this.handlePrioritySelectChange} disabled>
               <option>-</option>
               <option>1</option>
               <option>2</option>
@@ -127,11 +125,11 @@ class CreateTaskForm extends Component {
           </div>
           <div className='form-group'>
             <label htmlFor='taskNotes'><i className="far fa-sticky-note"></i> Notes</label>
-            <textarea className='form-control CreateTaskForm-textarea' id='taskNotesTextArea' defaultValue={notes} onChange={this.handleNotesInputChange} />
+            <textarea className='form-control EditTaskForm-textarea' id='taskNotesTextArea' defaultValue={task && task.notes ? task.notes : notes} onChange={this.handleNotesInputChange} />
           </div>
           <div className='form-group'>
             <label htmlFor='taskFeedback'><i className="far fa-comments"></i> Feedback</label>
-            <textarea className='form-control CreateTaskForm-textarea' id='taskFeedbackTextArea' defaultValue={feedback} onChange={this.handleFeedbackInputChange} />
+            <textarea className='form-control EditTaskForm-textarea' id='taskFeedbackTextArea' defaultValue={task && task.feedback ? task.feedback : feedback} onChange={this.handleFeedbackInputChange} />
           </div>
           <button type='submit' className='btn btn-primary' onClick={this.handleSubmit}><i className="fas fa-check"></i> Submit</button>
         </form>
@@ -140,4 +138,4 @@ class CreateTaskForm extends Component {
   }
 }
 
-export default CreateTaskForm
+export default EditTaskForm

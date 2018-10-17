@@ -7,12 +7,18 @@ import TaskCard from './TaskCard'
 class TaskColumn extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    tasks: PropTypes.array
+    toggleEditTaskModal: PropTypes.func.isRequired,
+    editTask: PropTypes.func.isRequired,
+    editTaskModalOpen: PropTypes.bool.isRequired,
+    tasks: PropTypes.array,
+    isAdminView: PropTypes.bool.isRequired,
+    currentTask: PropTypes.object
   }
 
   render() {
     const {
       title,
+      toggleEditTaskModal,
       tasks
     } = this.props
 
@@ -27,12 +33,12 @@ class TaskColumn extends Component {
             ? Object.entries(tasks).map(([key, task]) => (
               <div key={key}>
                   <TaskCard
-                    task={task} />
+                    task={task}
+                    toggleEditTaskModal={toggleEditTaskModal} />
               </div>
             ))
             : <div>No tasks</div>
           }
-
         </div>
       </div>
     )

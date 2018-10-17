@@ -1,35 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Modal from 'react-responsive-modal'
 
 import './styles/TaskCard.css'
-import TaskCardDetail from './TaskCardDetail'
 
 class TaskCard extends Component {
   static propTypes = {
-    task: PropTypes.object.isRequired
-  }
-
-  state = {
-    taskDetailModalOpen: false
-  }
-
-  onToggleTaskDetailModal = () => {
-    this.setState({ taskDetailModalOpen: !this.state.taskDetailModalOpen })
+    task: PropTypes.object.isRequired,
+    toggleEditTaskModal: PropTypes.func.isRequired
   }
 
   render() {
     const {
-      taskDetailModalOpen
-    } = this.state
-
-    const {
-      task
+      task,
+      toggleEditTaskModal
     } = this.props
 
     return (
       <div className="card shadow font-title mt-3 TaskCard-card mx-auto">
-        <a onClick={this.onToggleTaskDetailModal}>
+        {/* eslint-disable-next-line */}
+        <a onClick={() => toggleEditTaskModal(true, task)}>
           <div className='card-title mt-3'>
             <h5>{task.title}</h5>
           </div>
@@ -48,12 +37,6 @@ class TaskCard extends Component {
             </table>
           </div>
         </a>
-
-        <Modal open={taskDetailModalOpen} onClose={this.onToggleTaskDetailModal}>
-          <TaskCardDetail
-            selectedTask={task}
-            closeModal={this.onToggleTaskDetailModal} />
-        </Modal>
       </div>
     )
   }
