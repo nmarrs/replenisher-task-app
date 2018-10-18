@@ -31,21 +31,21 @@ Tasks are sorted throughout both the Admin View and User View by their respectiv
 
 The thinking behind this algorithm is that higher priority tasks should always be closer to the top of the list, thus the `* 100`. Super long tasks are not as prioritized as shorter tasks. As, in this system, it is most important to complete the highest number of high priority tasks in a given time period. Hence, the simple division of the time estimate allows for shorter tasks to have more precedence over longer tasks.
 
-# Next Steps
+### Next Steps
 - Refactor create / edit task form components (a lot of overlap)
 - Fully implement Firebase so data persists
-- Add authentication for users / admin
+- Add authentication and authorization
 
-# App Walkthrough
+### App Walkthrough
 
 This is the view you will be greeted with when first loading the app.
 
-![Admin View]('./readmeImages/adminView.png')
+![Admin View](readmeImages/adminView.png)
 
 You will notice that the template tasks have two example tasks already created for you.
 Clicking on one of the tasks will open a modal that displays the task's details, allowing you to edit certain pieces of information. This view can be seen below:
 
-![Task Details]('./readmeImages/taskDetails.png')
+![Task Details](readmeImages/taskDetails.png)
 
 ## Folder Structure
 
