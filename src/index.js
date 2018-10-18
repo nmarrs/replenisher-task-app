@@ -6,36 +6,13 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
 import './styles/index.css'
-import App from './components/App'
 import * as serviceWorker from './serviceWorker'
+import { testTask, testTask1 } from './testData'
+
+import App from './components/App'
 
 const defaultState = {
-  templateTasks: [{
-    id: 1,
-    title: 'Unload merchandise',
-    priority: 3,
-    timeEstimate: 2,
-    notes: 'Unload merchandise from the bay door. Driver usually comes by at 6 am sharp.',
-    feedback: '',
-    startTime: '',
-    endTime: '',
-    completionTime: '',
-    currentStatus: 'To Do',
-    rankWeight: 150
-  },
-  {
-    id: 2,
-    title: 'Stock shelves with unpacked items',
-    priority: 1,
-    timeEstimate: 10,
-    notes: 'Take merchandise items and stock shelves with them. Be sure to place items in correct areas.',
-    feedback: '',
-    startTime: '',
-    endTime: '',
-    completionTime: '',
-    currentStatus: 'To Do',
-    rankWeight: 10
-  }],
+  templateTasks: [ testTask, testTask1 ],
   user: {
     tasks: []
   },

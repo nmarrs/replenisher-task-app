@@ -28,16 +28,17 @@ The following functionality is ready to be implemented:
 
 The app is written in React / Redux. The code has been thoroughly tested utilizing tools such as Jest and Enzyme.
 
-Tasks are sorted throughout both the Admin and User View by their respective rank weight. Rank weight is determined by a simple algorithm that weighs a task's priority and time estimate. The algorithm is as follows:
+Tasks are sorted throughout both the Admin and User Views by their respective rank weight. Rank weight is determined by a simple algorithm that weighs a task's priority and time estimate. The algorithm is as follows:
 
 ### `Rank Weight = ((priority * 100) / timeEstimate)`
 
-The thinking behind this algorithm is that higher priority tasks should always be closer to the top of the list, thus the `* 100`. Super long tasks are not as prioritized as shorter tasks. As, in this system, it is most important to complete the highest number of high priority tasks in a given time period. Hence, the simple division of the time estimate allows for shorter tasks to have more precedence over longer tasks.
+The thinking behind this algorithm is that higher priority tasks should always be closer to the top of the list, thus the `* 100`. Super long tasks are not as prioritized as shorter tasks. As, in this system, it is most important to complete the highest number of high priority tasks possible in a given time period. Hence, the simple division of the time estimate allows for shorter tasks to have more precedence over longer tasks.
 
 ### Next Steps
 - Refactor create / edit task modal form components (a lot of overlap)
 - Fully implement Firebase so data persists
 - Add authentication and authorization
+- Implement more intuitive algorithm for calculating rank weight of task
 
 ### App Walkthrough
 
@@ -118,7 +119,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-This is required when the project is first downloaded so project can successfully run on your machine.
+This is required when the project is first cloned so the project can successfully run on your machine.
 
 ### `npm start`
 
