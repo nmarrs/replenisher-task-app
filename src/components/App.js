@@ -7,11 +7,12 @@ import logo from '../images/logo.png'
 import './styles/App.css'
 import { toggleCreateTaskModal, toggleEditTaskModal, toggleIsAdminView, assignTasksToUser, createTask, editTask, sortTasksByRank } from '../actions'
 
-import TaskColumn from './TaskColumn'
+import AdminView from './AdminView'
+import UserView from './UserView'
 import CreateTaskForm from './CreateTaskForm'
 import EditTaskForm from './EditTaskForm'
 
-class App extends Component {
+export class App extends Component {
   static propTypes = {
     templateTasks: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
@@ -20,9 +21,11 @@ class App extends Component {
     editTaskModalOpen: PropTypes.bool.isRequired,
     toggleCreateTaskModal: PropTypes.func,
     toggleEditTaskModal: PropTypes.func,
+    toggleIsAdminView: PropTypes.func,
     sortTasksByRank: PropTypes.func,
     assignTasksToUser: PropTypes.func,
     createTask: PropTypes.func,
+    editTask: PropTypes.func,
     currentTask: PropTypes.object
   }
 
@@ -49,7 +52,7 @@ class App extends Component {
 
     let switchUserViewButton = (
       isAdminView
-      ? <button onClick={toggleIsAdminView} className='btn btn-info float-left m-3 viewButton'><i className="fas fa-user-ninja"></i> Switch to User View</button>
+      ? <button id='toggleIsAdminViewButton' onClick={toggleIsAdminView} className='btn btn-info float-left m-3 viewButton'><i className="fas fa-user-ninja"></i> Switch to User View</button>
       : <button onClick={toggleIsAdminView} className='btn btn-info float-left m-3 viewButton'><i className="fas fa-user-tie"></i> Switch to Admin View</button>
     )
 
@@ -63,57 +66,29 @@ class App extends Component {
           <h2>Replenisher Task Management <img src={logo} className="App-logo" alt="logo" /></h2>
         </header>
         <div>
-          <button onClick={() => toggleCreateTaskModal(true)} className='btn btn-success float-right m-3'><i className="fas fa-plus"></i> Add New Task</button>
+          <button id='createTaskButton' onClick={() => toggleCreateTaskModal(true)} className='btn btn-success float-right m-3'><i className="fas fa-plus"></i> Add New Task</button>
           { isAdminView
-          ? <button onClick={() => assignTasksToUser(templateTasks)} className='btn btn-primary float-right m-3'><i className="fas fa-pen-square"></i> Assign Tasks to User</button>
+          ? <button id='assignTasksToUserButton' onClick={() => assignTasksToUser(templateTasks)} className='btn btn-primary float-right m-3'><i className="fas fa-pen-square"></i> Assign Tasks to User</button>
           : <div />
           }
 
           { switchUserViewButton }
 
           { isAdminView
-          ? <div>
-            <h3 className='mt-3'><i className="fas fa-tasks"></i> Template Tasks</h3>
-            <TaskColumn
-              title={'Tasks'}
-              tasks={templateTasks}
-              toggleEditTaskModal={toggleEditTaskModal}
-              editTaskModalOpen={editTaskModalOpen}
-              isAdminView={isAdminView}
-              editTask={editTask}
-              currentTask={currentTask} />
-          </div>
-          : <div>
-            <h3 className='mt-3'><i className="fas fa-tasks"></i> Current User Tasks</h3>
-            <div className='container'>
-              <div className='row'>
-                <TaskColumn
-                  title={'To Do'}
-                  tasks={toDoTasks}
-                  toggleEditTaskModal={toggleEditTaskModal}
-                  editTaskModalOpen={editTaskModalOpen}
-                  isAdminView={isAdminView}
-                  editTask={editTask}
-                  currentTask={currentTask} />
-                <TaskColumn
-                  title={'In Progress'}
-                  tasks={inProgressTasks}
-                  toggleEditTaskModal={toggleEditTaskModal}
-                  editTaskModalOpen={editTaskModalOpen}
-                  isAdminView={isAdminView}
-                  editTask={editTask}
-                  currentTask={currentTask} />
-                <TaskColumn
-                  title={'Finished'}
-                  tasks={finishedTasks}
-                  toggleEditTaskModal={toggleEditTaskModal}
-                  editTaskModalOpen={editTaskModalOpen}
-                  isAdminView={isAdminView}
-                  editTask={editTask}
-                  currentTask={currentTask} />
-              </div>
-            </div>
-          </div>
+          ? <AdminView
+            templateTasks={templateTasks}
+            isAdminView={isAdminView}
+            editTaskModalOpen={editTaskModalOpen}
+            toggleEditTaskModal={toggleEditTaskModal}
+            currentTask={currentTask} />
+          : <UserView
+            toDoTasks={toDoTasks}
+            inProgressTasks={inProgressTasks}
+            finishedTasks={finishedTasks}
+            isAdminView={isAdminView}
+            editTaskModalOpen={editTaskModalOpen}
+            toggleEditTaskModal={toggleEditTaskModal}
+            currentTask={currentTask} />
           }
         </div>
 

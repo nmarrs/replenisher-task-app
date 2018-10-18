@@ -1,37 +1,7 @@
 import { rootReducer } from '.././index'
+import { testTask, testTask2 } from '../testData'
 
 describe('reducer', () => {
-  let testTask, testTask2
-  beforeEach(() => {
-    testTask = {
-      id: 1,
-      title: 'Unload merchandise',
-      priority: 3,
-      timeEstimate: 2,
-      notes: 'Unload merchandise from the bay door. Driver usually comes by at 6 am sharp.',
-      feedback: '',
-      startTime: '',
-      endTime: '',
-      completionTime: '',
-      currentStatus: 'To Do',
-      rankWeight: 150
-    }
-
-    testTask2 = {
-      id: 3,
-      title: 'Stock shelves with unpacked items',
-      priority: 5,
-      timeEstimate: 2,
-      notes: 'Take merchandise items and stock shelves with them. Be sure to place items in correct areas.',
-      feedback: '',
-      startTime: '',
-      endTime: '',
-      completionTime: '',
-      currentStatus: 'To Do',
-      rankWeight: 250
-    }
-  })
-
   describe('INITIAL_STATE', () => {
     it('is correct', () => {
       const action = { type: 'dummy_action' }
@@ -108,8 +78,9 @@ describe('reducer', () => {
 
   describe('EDIT_TEMPLATE_TASK', () => {
     it('is correct', () => {
-      testTask.feedback = 'Some example feedback.'
-      const action = { type: 'EDIT_TEMPLATE_TASK', payload: testTask }
+      let changedTask = { ...testTask }
+      changedTask.feedback = 'Some example feedback.'
+      const action = { type: 'EDIT_TEMPLATE_TASK', payload: changedTask }
 
       let returnedState = rootReducer(undefined, action)
       expect(returnedState).toMatchSnapshot()
@@ -119,8 +90,9 @@ describe('reducer', () => {
   describe('EDIT_TASK', () => {
     it('is correct', () => {
       const action1 = { type: 'ASSIGN_TASKS_TO_USER', payload: [ testTask ] }
-      testTask.feedback = 'Some example feedback.'
-      const action2 = { type: 'EDIT_TASK', payload: testTask }
+      let changedTask = { ...testTask }
+      changedTask.feedback = 'Some example feedback.'
+      const action2 = { type: 'EDIT_TASK', payload: changedTask }
 
       // First add initial template tasks to user
       let firstState = rootReducer(undefined, action1)
