@@ -1,4 +1,4 @@
-Replenisher Task App
+# Replenisher Task App
 
 ## Table of Contents
 
@@ -20,6 +20,7 @@ As it stands, the application currently has the following functionality:
 - Displays a list of sorted pending tasks
   - Sorted by first status, second rank
 - User has ability to track individual task status
+- Extensible
 
 The following functionality is ready to be implemented:
 - Tracking time in each status after "Started" until "Finished"
@@ -27,47 +28,49 @@ The following functionality is ready to be implemented:
 
 The app is written in React / Redux. The code has been thoroughly tested utilizing tools such as Jest and Enzyme.
 
-Tasks are sorted throughout both the Admin View and User View by their respective ranks. Rank weight is determined by a simple algorithm that weighs a tasks priority vs time estimate. The algorithm is as follows:
+Tasks are sorted throughout both the Admin and User View by their respective rank weight. Rank weight is determined by a simple algorithm that weighs a task's priority and time estimate. The algorithm is as follows:
 
 ### `Rank Weight = ((priority * 100) / timeEstimate)`
 
 The thinking behind this algorithm is that higher priority tasks should always be closer to the top of the list, thus the `* 100`. Super long tasks are not as prioritized as shorter tasks. As, in this system, it is most important to complete the highest number of high priority tasks in a given time period. Hence, the simple division of the time estimate allows for shorter tasks to have more precedence over longer tasks.
 
 ### Next Steps
-- Refactor create / edit task form components (a lot of overlap)
+- Refactor create / edit task modal form components (a lot of overlap)
 - Fully implement Firebase so data persists
 - Add authentication and authorization
 
 ### App Walkthrough
 
-This is the view you will be greeted with when first loading the app:
+This is the page you will be greeted with when first loading the app:
 
 ![Admin View](readmeImages/adminView.png)
-
-Clicking on the `Assign Tasks`
 
 You will notice that the template tasks have two example tasks already created for you.
 Clicking on one of the tasks will open a modal that displays the task's details, allowing you to edit certain pieces of information. This view can be seen below:
 
 ![Task Details](readmeImages/taskDetails.png)
 
-Clicking on the ![Add New Task Button](readmeImages/addNewTaskButton.png) button will launch a modal similar to the task detail modal and will let you create a new task.
+Clicking on the ![Add New Task Button](readmeImages/addNewTaskButton.png)<br>
+button will launch a modal similar to the task detail modal and will let you create a new task.
 
-Clicking on the ![Assign Tasks To User Button](readmeImages/assignTasksToUserButton.png) button will assign all current template tasks to the user, overriding any existing user tasks.
+Clicking on the ![Assign Tasks To User Button](readmeImages/assignTasksToUserButton.png)<br>
+button will assign all current template tasks to the user, overriding any existing user tasks.
 
-Clicking on the ![Switch View Button](readmeImages/switchViewButton.png) button will switch your context to a general user. Our users are ninjas, as they really kick butt.
+Clicking on the ![Switch View Button](readmeImages/switchViewButton.png)<br>
+button will switch your context to a general user. Our users are ninjas, as they really kick butt.
 
-Once you've clicked on this button you will be greeted with the following view:
+Once you've clicked on the `Switch to User View` button you will be greeted with the following page:
 
 ![User View](readmeImages/userView.png)
 
-Any tasks that are assigned to the user from the admin view, as well as any tasks a user decides to create will show up here. Tasks are displayed by their current status, which can be modified by the user in the task detail modal.
+Any tasks that are assigned to the user from the admin view, as well as any tasks a user decides to create, will show up here. Tasks are organized by their current status, which can be modified by the user in the task detail modal.
 
-Clicking on the ![Switch View Button 2](readmeImages/switchViewButton2.png) button will switch your context back to an admin user. Our admins are business people, as they are really professional.
+Clicking on the ![Switch View Button 2](readmeImages/switchViewButton2.png)<br>
+button will switch your view back to an admin user. Our admins are business people, as they are really professional.
 
 ## Folder Structure
 
-My project has a folder structure like this:
+The project has the following folder structure:
 
 ```
 replenisher-task-app/
