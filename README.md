@@ -3,6 +3,8 @@ Replenisher Task App
 ## Table of Contents
 
 - [Application Tutorial](#application-tutorial)
+  - [Next Steps](#next-steps)
+  - [App Walkthrough](#app-walkthrough)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
@@ -38,14 +40,30 @@ The thinking behind this algorithm is that higher priority tasks should always b
 
 ### App Walkthrough
 
-This is the view you will be greeted with when first loading the app.
+This is the view you will be greeted with when first loading the app:
 
 ![Admin View](readmeImages/adminView.png)
+
+Clicking on the `Assign Tasks`
 
 You will notice that the template tasks have two example tasks already created for you.
 Clicking on one of the tasks will open a modal that displays the task's details, allowing you to edit certain pieces of information. This view can be seen below:
 
 ![Task Details](readmeImages/taskDetails.png)
+
+Clicking on the ![Add New Task Button](readmeImages/addNewTaskButton.png) button will launch a modal similar to the task detail modal and will let you create a new task.
+
+Clicking on the ![Assign Tasks To User Button](readmeImages/assignTasksToUserButton.png) button will assign all current template tasks to the user, overriding any existing user tasks.
+
+Clicking on the ![Switch View Button](readmeImages/switchViewButton.png) button will switch your context to a general user. Our users are ninjas, as they really kick butt.
+
+Once you've clicked on this button you will be greeted with the following view:
+
+![User View](readmeImages/userView.png)
+
+Any tasks that are assigned to the user from the admin view, as well as any tasks a user decides to create will show up here. Tasks are displayed by their current status, which can be modified by the user in the task detail modal.
+
+Clicking on the ![Switch View Button 2](readmeImages/switchViewButton2.png) button will switch your context back to an admin user. Our admins are business people, as they are really professional.
 
 ## Folder Structure
 
@@ -94,6 +112,10 @@ They will not be included in the production build so you can use them for things
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+This is required when the project is first downloaded so project can successfully run on your machine.
 
 ### `npm start`
 
