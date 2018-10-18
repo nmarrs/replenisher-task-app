@@ -1,3 +1,31 @@
+import { templateTasksRef } from './config/firebase';
+
+/**
+  Action function that fetches data from firebase database
+*/
+export const fetchData = () => async dispatch => {
+  templateTasksRef.on('value', snapshot => {
+    dispatch({
+      type: 'FETCH_TEMPLATE_TASKS',
+      payload: snapshot.val()
+    })
+  })
+}
+
+/**
+  Action function that adds new template task to firebase database
+*/
+export const addTemplateTask = (newTemplateTask) => async dispatch => {
+  templateTasksRef.push().set(newTemplateTask)
+}
+
+/**
+  Action function that edits template task in firebase database
+*/
+export const editTemplateTask = (templateTask, templateTaskId) => async dispatch => {
+  templateTasksRef.child(templateTaskId).update(templateTask)
+}
+
 /**
   Action function that opens / closes the create task modal
 */
