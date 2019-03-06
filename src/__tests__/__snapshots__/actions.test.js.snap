@@ -23,6 +23,10 @@ Array [
 ]
 `;
 
+exports[`actions calculateTaskRankWeight calculates new task rank weight as expected when passed more data 1`] = `0`;
+
+exports[`actions calculateTaskRankWeight calculates new task rank weight as expected when passed more data 2`] = `0`;
+
 exports[`actions calculateTaskRankWeight calculates task rank weight as expected 1`] = `150`;
 
 exports[`actions calculateTaskRankWeight calculates task rank weight as expected 2`] = `10`;
