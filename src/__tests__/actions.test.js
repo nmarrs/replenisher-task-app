@@ -142,7 +142,7 @@ describe("actions", () => {
       );
       expect(taskRankWeight1).toMatchSnapshot();
       expect(taskRankWeight2).toMatchSnapshot();
-      expect(taskRankWeight2).toBeGreaterThan(taskRankWeight1);
+      expect(taskRankWeight2).toBe(taskRankWeight1);
     });
   });
 });

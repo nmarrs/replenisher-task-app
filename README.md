@@ -1,4 +1,4 @@
-# Replenisher Task App
+# Tapp
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@
 
 ## Application Tutorial
 
-Welcome to the Replenisher Task App!
+Welcome to Tapp!
 
 As it stands, the application currently has the following functionality:
 - Displays a list of sorted pending tasks
@@ -25,6 +25,8 @@ As it stands, the application currently has the following functionality:
 The following functionality is ready to be implemented:
 - Tracking time in each status after "Started" until "Finished"
 - Recurring tasks duplicate based on recurrence frequency / schedule
+
+Entered for the BYU Rollins Center for Entrepreneurship and Technology App Competition.
 
 The app is written in React / Redux. The code has been thoroughly tested utilizing tools such as Jest and Enzyme.
 
@@ -39,6 +41,7 @@ The thinking behind this algorithm is that higher priority tasks should always b
 - Fully implement Firebase so data persists
 - Add authentication and authorization
 - Implement more intuitive algorithm for calculating rank weight of task
+- Ability to drag tasks between task columns
 
 ### App Walkthrough
 

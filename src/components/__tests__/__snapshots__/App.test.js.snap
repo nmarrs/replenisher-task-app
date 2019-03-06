@@ -8,13 +8,13 @@ exports[`App renders correctly is admin view 1`] = `
     className="App-header"
   >
     <h2>
-      Replenisher Task Management
-       
       <img
         alt="logo"
         className="App-logo"
         src="logo.png"
       />
+      Tapp
+       
     </h2>
   </header>
   <div>
@@ -177,13 +177,13 @@ exports[`App renders correctly not admin view 1`] = `
     className="App-header"
   >
     <h2>
-      Replenisher Task Management
-       
       <img
         alt="logo"
         className="App-logo"
         src="logo.png"
       />
+      Tapp
+       
     </h2>
   </header>
   <div>
@@ -309,13 +309,13 @@ exports[`App renders correctly not admin view, sorts tasks correctly 1`] = `
     className="App-header"
   >
     <h2>
-      Replenisher Task Management
-       
       <img
         alt="logo"
         className="App-logo"
         src="logo.png"
       />
+      Tapp
+       
     </h2>
   </header>
   <div>

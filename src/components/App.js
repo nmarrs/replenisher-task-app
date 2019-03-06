@@ -12,8 +12,7 @@ import {
   assignTasksToUser,
   createTask,
   editTask,
-  sortTasksByRank,
-  calculateTaskRankWeight
+  sortTasksByRank
 } from "../actions";
 
 import AdminView from "./AdminView";

@@ -138,7 +138,6 @@ export const calculateTaskRankWeight = (
   startTime
 ) => {
   if (currentDate && startTime) {
-    console.log(currentDate, startTime, "am getting into here");
     var timeDelta = (currentDate - startTime) / 10000;
     var timeEstimateMilliseconds = (timeEstimate * 24 * 3600 * 1000) / 10000;
     return parseInt((priority * 100) / (timeEstimateMilliseconds - timeDelta));
